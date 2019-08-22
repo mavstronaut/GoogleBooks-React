@@ -21,5 +21,14 @@
   "bugs": {
     "url": "https://github.com/mavstronaut/GoogleBooks-React/issues"
   },
-  "homepage": "https://github.com/mavstronaut/GoogleBooks-React#readme"
+  "homepage": "https://github.com/mavstronaut/GoogleBooks-React#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "if-env": "^1.0.4",
+    "lodash": "^4.17.15",
+    "mongoose": "^5.6.10"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.2"
+  }
 }
