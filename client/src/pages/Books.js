@@ -75,4 +75,6 @@ class Books extends Component {
         API.deleteBook(deleteBook._id)
             .then(window.location.reload())
     };
+
+    
 }
