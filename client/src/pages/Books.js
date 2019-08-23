@@ -20,5 +20,18 @@ class Books extends Component {
         });
     }
 
+    handleSearch = event => {
+        event.preventDefault();
+
+        if (this.state.bookSearch) {
+            API.searchBooks(this.state.bookSearch).then(res =>
+                this.setState({
+                    results: res.data.items
+                })
+                console.log("response", res.data.items)
+            ).catch(err => console.log(err));
+        };
+    };
+
     
 }
