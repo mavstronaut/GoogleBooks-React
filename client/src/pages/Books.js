@@ -3,7 +3,7 @@ import SearchCard from "../components/SearchCard";
 import SearchResult from "../components/SearchResult";
 import SaveCard from "../components/SaveResult";
 import BookItemCard from "../components/BookItemCard";
-import API from ""../utils/API";
+import API from "../utils/API";
 
 class Books extends Component {
     state = {
@@ -27,8 +27,7 @@ class Books extends Component {
             API.searchBooks(this.state.bookSearch).then(res =>
                 this.setState({
                     results: res.data.items
-                })
-                console.log("response", res.data.items)
+                })    
             ).catch(err => console.log(err));
         };
     };
