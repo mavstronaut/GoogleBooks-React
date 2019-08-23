@@ -124,9 +124,10 @@ class Books extends Component {
                                     />
                                 )
                             })
-                        )}
+                        ) : (<h3>No Saved Books</h3>)}
                     </SaveCard>
-                    }
+                }
+            </div>
         }
     }
 }
