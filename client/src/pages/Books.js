@@ -56,6 +56,23 @@ class Books extends Component {
             key: saveBook.id
         };
 
-        
-    }
+        API.saveBook(bookData.key, bookData)
+            .then(API.getSavedBooks())
+                .then(res => {
+                    this.setState({
+                        savedBooks: res.data
+                    })
+                    console.log("State", this.state.savedBooks);
+                    console.log("Length", this.state.savedBooks.length);
+                });
+    };
+
+    handleDelete = event => {
+        const bookIndex = event.target.attributes.getNamedItem("data-index").value;
+        const deleteBook = this.state.savedBooks[bookIndex];
+        console.log(deleteBook._id);
+
+        API.deleteBook(deleteBook._id)
+            .then(window.location.reload())
+    };
 }
