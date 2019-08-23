@@ -33,5 +33,29 @@ class Books extends Component {
         };
     };
 
-    
+    handleInputChange = event => {
+        const value = event.target.value;
+
+        this.setState({
+            bookSearch: value
+        });
+    };
+
+    handleSave = event => {
+        const bookIndex = event.target.attributes.getNamedItem("data-index").value;
+        const saveBook = this.state.results[bookIndex];
+        console.log(saveBook);
+
+        const bookData = {
+            title: saveBook.volumeInfo.title,
+            link: saveBook.volumeInfo.previewLink,
+            thumbnail: saveBook.volumeInfo.imageLinks.thumbnail,
+            author: saveBook.volumeInfo.imageLinks.thumbnail,
+            author: saveBook.volumeInfo.authors[0],
+            description: saveBook.volumeInfo.description,
+            key: saveBook.id
+        };
+
+        
+    }
 }
