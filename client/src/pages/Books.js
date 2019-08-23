@@ -76,5 +76,57 @@ class Books extends Component {
             .then(window.location.reload())
     };
 
-    
+
+    render() {
+        return {
+            <div>
+                {window.location.pathname === "/" ?
+                    <div>
+                            <SearchCard
+                                value={this.state.bookSearch}
+                                onChange={this.handleInputChange}
+                                onClick={this.handleSearch}
+                            />
+
+                            <SearchResult>
+                                    {this.state.results.length ? (
+                                        this.state.results.map( (book, i) => {
+                                            return (
+                                                <BookItemCard
+                                                    key={book.id}
+                                                    title={book.volumeInfo.title}
+                                                    author={(book.volumeInfo.authors) ? (book.volumeInfo.authors[0]) : ("Anonymous")}
+                                                    href={book.volumeInfo.previewLink}
+                                                    thumbnail={(book.volumeInfo.imageLinks) ? (book.volumeInfo.imageLinks.thumbnail) : ("https://iconutopia.com/wp-content/uploads/2016/06/rocket-book.png")}
+                                                    description={book.volumeInfo.description}
+                                                    save={this.handleSave}
+                                                    index={i}
+                                                />
+                                            )
+                                        })
+                                    ) : (<h3>No Results Found.</h3>)}
+                            </SearchResult>
+                    </div>
+                    :
+                    <SaveCard>
+                        {this.state.savedBooks.length ? (
+                            this.state.savedBooks.map((book, i) => {
+                                return (
+                                    <BookItemCard
+                                        key={book._id}
+                                        title={book.title}
+                                        author={book.author}
+                                        href={book.link}
+                                        thumbnail={(book.thumbnail) ? (book.thumbnail) : ("https://iconutopia.com/wp-content/uploads/2016/06/rocket-book.png")}
+                                        description = {book.description}
+                                        delete={this.handleDelete}
+                                        index={i}
+                                    />
+                                )
+                            })
+                        )}
+                    </SaveCard>
+                    }
+        }
+    }
 }
