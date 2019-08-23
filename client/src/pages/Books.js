@@ -128,8 +128,8 @@ class Books extends Component {
                         </SaveCard>
                 }
             </div>
-        }
-    )
+        )
+    }
 }
 
 export default Books;
