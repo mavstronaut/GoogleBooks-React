@@ -78,7 +78,7 @@ class Books extends Component {
 
 
     render() {
-        return {
+        return (
             <div>
                 {window.location.pathname === "/" ?
                     <div>
@@ -129,7 +129,7 @@ class Books extends Component {
                 }
             </div>
         }
-    }
+    )
 }
 
 export default Books;
