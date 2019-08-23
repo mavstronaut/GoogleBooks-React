@@ -16,7 +16,7 @@ function BookItemCard(props) {
                     </div>
                     <a href={props.href} target="_blank" className="btn btn-primary" role="button">View</a>
                     {window.location.pathname === "/" ?
-                        <span data-index={props.index} className="save btn btn-success" onClick={props.save}>Save Article</span>} 
+                        <span data-index={props.index} className="save btn btn-success" onClick={props.save}>Save Article</span> 
                         :
                         <span data-index={props.index} className="save btn btn-dnager" onClick={props.delete}>Remove from Save</span>}                      
                     }
