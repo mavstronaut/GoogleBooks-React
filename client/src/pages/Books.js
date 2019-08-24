@@ -41,6 +41,7 @@ class Books extends Component {
     };
 
     handleSave = event => {
+        // const bookSave = this.state.books.find(book => book.id === id);
         const bookIndex = event.target.attributes.getNamedItem("data-index").value;
         const saveBook = this.state.results[bookIndex];
         console.log(saveBook);
@@ -55,15 +56,19 @@ class Books extends Component {
             key: saveBook.id
         };
 
-        API.saveBook(bookData.key, bookData)
-            .then(API.getSavedBooks())
+        API.saveBook(bookData)
+            .then(() => API.getSavedBooks())
                 .then(res => {
                     this.setState({
                         savedBooks: res.data
                     })
                     console.log("State", this.state.savedBooks);
                     console.log("Length", this.state.savedBooks.length);
-                });
+                }).catch(() =>
+                this.setState({
+                    message: "no new books found"
+                })
+            );
     };
 
     handleDelete = event => {
