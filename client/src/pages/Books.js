@@ -49,7 +49,6 @@ class Books extends Component {
             title: saveBook.volumeInfo.title,
             link: saveBook.volumeInfo.previewLink,
             thumbnail: saveBook.volumeInfo.imageLinks.thumbnail,
-            author: saveBook.volumeInfo.imageLinks.thumbnail,
             author: saveBook.volumeInfo.authors[0],
             description: saveBook.volumeInfo.description,
             key: saveBook.id
