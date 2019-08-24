@@ -56,14 +56,15 @@ class Books extends Component {
         };
 
         API.saveBook(bookData.key, bookData)
-            .then(API.getSavedBooks())
+            .then(API.getSavedBooks()
                 .then(res => {
                     this.setState({
                         savedBooks: res.data
                     })
                     console.log("State", this.state.savedBooks);
                     console.log("Length", this.state.savedBooks.length);
-            });
+                })
+            )
         };
 
 
