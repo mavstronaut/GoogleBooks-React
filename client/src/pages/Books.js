@@ -63,8 +63,9 @@ class Books extends Component {
                     })
                     console.log("State", this.state.savedBooks);
                     console.log("Length", this.state.savedBooks.length);
-                });
-    };
+            });
+        };
+
 
     handleDelete = event => {
         const bookIndex = event.target.attributes.getNamedItem("data-index").value;

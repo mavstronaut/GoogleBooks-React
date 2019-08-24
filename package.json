@@ -23,6 +23,7 @@
     "url": "https://github.com/mavstronaut/GoogleBooks-React/issues"
   },
   "dependencies": {
+    "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "if-env": "^1.0.4",
     "lodash": "^4.17.15",
