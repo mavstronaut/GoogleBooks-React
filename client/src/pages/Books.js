@@ -49,22 +49,23 @@ class Books extends Component {
             title: saveBook.volumeInfo.title,
             link: saveBook.volumeInfo.previewLink,
             thumbnail: saveBook.volumeInfo.imageLinks.thumbnail,
-            author: saveBook.volumeInfo.imageLinks.thumbnail,
             author: saveBook.volumeInfo.authors[0],
             description: saveBook.volumeInfo.description,
             key: saveBook.id
         };
 
         API.saveBook(bookData.key, bookData)
-            .then(API.getSavedBooks())
+            .then(API.getSavedBooks()
                 .then(res => {
                     this.setState({
                         savedBooks: res.data
                     })
                     console.log("State", this.state.savedBooks);
                     console.log("Length", this.state.savedBooks.length);
-                });
-    };
+                })
+            )
+        };
+
 
     handleDelete = event => {
         const bookIndex = event.target.attributes.getNamedItem("data-index").value;
