@@ -18,7 +18,7 @@ function BookItemCard(props) {
                     {window.location.pathname === "/" ?
                         <span data-index={props.index} className="save btn btn-success" onClick={props.save}>Save Article</span> 
                         :
-                        <span data-index={props.index} className="save btn btn-dnager" onClick={props.delete}>Remove from Save</span>                      
+                        <span data-index={props.index} className="delete btn btn-dnager" onClick={props.delete}>Remove from Save</span>                      
                     }
                 </div>
             </div>
