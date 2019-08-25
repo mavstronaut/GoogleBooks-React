@@ -156,7 +156,7 @@ class Books extends Component {
                                                 href={book.volumeInfo.previewLink}
                                                 thumbnail={(book.volumeInfo.imageLinks) ? (book.volumeInfo.imageLinks.thumbnail) : ("https://iconutopia.com/wp-content/uploads/2016/06/rocket-book.png")}
                                                 description={book.volumeInfo.description}
-                                                save={this.handleSave}
+                                                save={this.handleBookSave}
                                                 index={i}
                                             />
                                         )
