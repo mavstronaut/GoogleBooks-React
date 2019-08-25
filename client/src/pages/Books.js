@@ -19,7 +19,7 @@ class Books extends Component {
             })
         }).catch(() =>
         this.setState({
-            books: [],
+            savedBooks: [],
             message: "No New Books Found, Try a Different Query"
         })
         );
@@ -49,14 +49,14 @@ class Books extends Component {
         const book = this.state.books.find(book => book.id === id);
     
         API.saveBook({
-          googleId: book.id,
+          key: book.id,
           title: book.volumeInfo.title,
           subtitle: book.volumeInfo.subtitle,
           link: book.volumeInfo.infoLink,
           authors: book.volumeInfo.authors,
           description: book.volumeInfo.description,
           image: book.volumeInfo.imageLinks.thumbnail
-        }).then(() => this.getBooks());
+        }).then(() => this.getSavedBooks());
       };
 
     getSavedBooks = () => {
