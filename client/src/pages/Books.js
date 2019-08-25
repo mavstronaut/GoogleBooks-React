@@ -54,16 +54,19 @@ class Books extends Component {
             key: saveBook.id
         };
 
+        const setBook = async (response) => {
+            console.log("State", this.state.savedBooks);
+            console.log("Length", this.state.savedBooks.length);
+            return response = await this.setState({savedBooks: response.data})
+              
+        }
+        
         API.saveBook(bookData)
-        .then(API.getSavedBooks()
-            .then(res => {
-                this.setState({
-                    savedBooks: res.data
-                })
-                console.log("State", this.state.savedBooks);
-                console.log("Length", this.state.savedBooks.length);
-            })
+            .then(API.getSavedBooks()
+            .then(setBook)
         )
+
+
         // API.saveBook(bookData.key, bookData)
         //     .then(API.getSavedBooks()
         //         .then(res => {
@@ -74,7 +77,7 @@ class Books extends Component {
         //             console.log("Length", this.state.savedBooks.length);
         //         })
         //     )
-        };
+    };
 
 
     handleDelete = event => {
