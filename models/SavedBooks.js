@@ -15,7 +15,8 @@ const bookSchema = new Schema({
     thumbnail: {type: String, required: false},
     author: {type: String, required: false},
     description: {type: String, required: false},
-    key: {tupe: String, required: false}
+    key: {type: String, required: false},
+    dateSaved: { type: Date, default: Date.now }
 });
 
 const SavedBooks = mongoose.model("SavedBooks", bookSchema);

@@ -3,8 +3,8 @@ const db = require("../models");
 module.exports = {
     findAllSaved: (req, res) => {
         db.SavedBooks
-        .find()
-        .then(function(result){
+        .find().sort({ date: -1 })
+        .then(function(result) {
             res.json(result)
         }).catch(err => res.status(422).json(err));
     },

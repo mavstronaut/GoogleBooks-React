@@ -12,12 +12,17 @@ class Books extends Component {
         bookSearch: ""
     };
 
-    componentDidMount () {
+    componentDidMount() {
         API.getSavedBooks().then(res => {
             this.setState({
                 savedBooks: res.data
-            });
-        });
+            })
+        }).catch(() =>
+        this.setState({
+            books: [],
+            message: "No New Books Found, Try a Different Query"
+        })
+        );
     }
 
     handleSearch = event => {
@@ -40,32 +45,71 @@ class Books extends Component {
         });
     };
 
-    handleSave = event => {
-        const bookIndex = event.target.attributes.getNamedItem("data-index").value;
-        const saveBook = this.state.results[bookIndex];
-        console.log(saveBook);
+    handleBookSave = id => {
+        const book = this.state.books.find(book => book.id === id);
+    
+        API.saveBook({
+          googleId: book.id,
+          title: book.volumeInfo.title,
+          subtitle: book.volumeInfo.subtitle,
+          link: book.volumeInfo.infoLink,
+          authors: book.volumeInfo.authors,
+          description: book.volumeInfo.description,
+          image: book.volumeInfo.imageLinks.thumbnail
+        }).then(() => this.getBooks());
+      };
 
-        const bookData = {
-            title: saveBook.volumeInfo.title,
-            link: saveBook.volumeInfo.previewLink,
-            thumbnail: saveBook.volumeInfo.imageLinks.thumbnail,
-            author: saveBook.volumeInfo.authors[0],
-            description: saveBook.volumeInfo.description,
-            key: saveBook.id
-        };
-
-        const setBook = async (response) => {
-            console.log("State", this.state.savedBooks);
-            console.log("Length", this.state.savedBooks.length);
-            return response = await this.setState({savedBooks: response.data})
-              
-        }
-        
-        API.saveBook(bookData)
-            .then(API.getSavedBooks()
-            .then(setBook)
+    getSavedBooks = () => {
+    API.getSavedBooks(this.state.q)
+        .then(res =>
+        this.setState({
+            saveBook: res.data
+        })
         )
+        .catch(() =>
+        this.setState({
+            books: [],
+            message: "No New Books Found, Try a Different Query"
+        })
+        );
+    };
 
+    // handleSave = event => {
+    //     const bookIndex = event.target.attributes.getNamedItem("data-index").value;
+    //     const saveBook = this.state.results[bookIndex];
+    //     console.log(saveBook);
+
+    //     const bookData = {
+    //         title: saveBook.volumeInfo.title,
+    //         link: saveBook.volumeInfo.previewLink,
+    //         thumbnail: saveBook.volumeInfo.imageLinks.thumbnail,
+    //         author: saveBook.volumeInfo.authors[0],
+    //         description: saveBook.volumeInfo.description,
+    //         key: saveBook.id
+    //     };
+
+        // async function newBook(bookData) {
+        //     const a = await API.saveBook(bookData);
+        //     return a;
+        // }
+
+        // async function setNewBook(bookData) {
+        //     const c = await this.setState({ savedBooks: bookData.data});
+        //     return c;
+        // }
+        // newBook(bookData).then(setNewBook(bookData)).catch(err => {console.log(err)});
+                
+        
+        // API.saveBook(bookData)
+        //         .then(API.getSavedBooks()
+        //             .then(res => {
+        //                 this.setState({
+        //                     savedBooks: res.data
+        //                 })
+        //                 console.log("State", this.state.savedBooks);
+        //                 console.log("Length", this.state.savedBooks.length);
+        //             })
+        //         )
 
         // API.saveBook(bookData.key, bookData)
         //     .then(API.getSavedBooks()
@@ -77,7 +121,7 @@ class Books extends Component {
         //             console.log("Length", this.state.savedBooks.length);
         //         })
         //     )
-    };
+    // };
 
 
     handleDelete = event => {
