@@ -8,7 +8,7 @@ Based on the [Google Books API](https://www.googleapis.com/books/v1/volumes?q=is
 
 ### Demo
 
-* [View Live on Heroku](https://googlebook-scraper.herokuapp.com/)
+* [View Live on Heroku](https://book-react-search.herokuapp.com/)
 
 
 # Process Summary
