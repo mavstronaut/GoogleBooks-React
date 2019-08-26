@@ -10,11 +10,11 @@ export default {
     deleteBook: function(id) {
         return axios.delete("api/books/delete/" + id);
     },
-    saveBook: function(bookData) {
-        return axios.post("/api/books/", bookData);
-    }
-    // saveBook: function(bookKey, bookData) {
-    //     return axios.post("/api/books/" + bookKey, bookData);
+    // saveBook: function(bookData) {
+    //     return axios.post("/api/books/", bookData);
     // }
+    saveBook: function(bookKey, bookData) {
+        return axios.post("/api/books/" + bookKey, bookData);
+    }
 
 };

@@ -20,7 +20,7 @@ class Books extends Component {
         }).catch(() =>
         this.setState({
             savedBooks: [],
-            message: "No New Books Found, Try a Different Query"
+            // message: "No New Books Found, Try a Different Query"
         })
         );
     }
@@ -45,48 +45,48 @@ class Books extends Component {
         });
     };
 
-    handleBookSave = id => {
-        const book = this.state.books.find(book => book.id === id);
+    // handleBookSave = id => {
+    //     const book = this.state.books.find(book => book.id === id);
     
-        API.saveBook({
-          key: book.id,
-          title: book.volumeInfo.title,
-          subtitle: book.volumeInfo.subtitle,
-          link: book.volumeInfo.infoLink,
-          authors: book.volumeInfo.authors,
-          description: book.volumeInfo.description,
-          image: book.volumeInfo.imageLinks.thumbnail
-        }).then(() => this.getSavedBooks());
-      };
+    //     API.saveBook({
+    //       key: book.id,
+    //       title: book.volumeInfo.title,
+    //       subtitle: book.volumeInfo.subtitle,
+    //       link: book.volumeInfo.infoLink,
+    //       authors: book.volumeInfo.authors,
+    //       description: book.volumeInfo.description,
+    //       image: book.volumeInfo.imageLinks.thumbnail
+    //     }).then(() => this.getSavedBooks());
+    //   };
 
-    getSavedBooks = () => {
-    API.getSavedBooks(this.state.q)
-        .then(res =>
-        this.setState({
-            saveBook: res.data
-        })
-        )
-        .catch(() =>
-        this.setState({
-            books: [],
-            message: "No New Books Found, Try a Different Query"
-        })
-        );
-    };
+    // getSavedBooks = () => {
+    // API.getSavedBooks(this.state.q)
+    //     .then(res =>
+    //     this.setState({
+    //         saveBook: res.data
+    //     })
+    //     )
+    //     .catch(() =>
+    //     this.setState({
+    //         books: [],
+    //         message: "No New Books Found, Try a Different Query"
+    //     })
+    //     );
+    // };
 
-    // handleSave = event => {
-    //     const bookIndex = event.target.attributes.getNamedItem("data-index").value;
-    //     const saveBook = this.state.results[bookIndex];
-    //     console.log(saveBook);
+    handleSave = event => {
+        const bookIndex = event.target.attributes.getNamedItem("data-index").value;
+        const saveBook = this.state.results[bookIndex];
+        console.log(saveBook);
 
-    //     const bookData = {
-    //         title: saveBook.volumeInfo.title,
-    //         link: saveBook.volumeInfo.previewLink,
-    //         thumbnail: saveBook.volumeInfo.imageLinks.thumbnail,
-    //         author: saveBook.volumeInfo.authors[0],
-    //         description: saveBook.volumeInfo.description,
-    //         key: saveBook.id
-    //     };
+        const bookData = {
+            title: saveBook.volumeInfo.title,
+            link: saveBook.volumeInfo.previewLink,
+            thumbnail: saveBook.volumeInfo.imageLinks.thumbnail,
+            author: saveBook.volumeInfo.authors[0],
+            description: saveBook.volumeInfo.description,
+            key: saveBook.id
+        };
 
         // async function newBook(bookData) {
         //     const a = await API.saveBook(bookData);
@@ -111,17 +111,17 @@ class Books extends Component {
         //             })
         //         )
 
-        // API.saveBook(bookData.key, bookData)
-        //     .then(API.getSavedBooks()
-        //         .then(res => {
-        //             this.setState({
-        //                 savedBooks: res.data
-        //             })
-        //             console.log("State", this.state.savedBooks);
-        //             console.log("Length", this.state.savedBooks.length);
-        //         })
-        //     )
-    // };
+        API.saveBook(bookData.key, bookData)
+            .then(API.getSavedBooks()
+                .then(res => {
+                    this.setState({
+                        savedBooks: res.data
+                    })
+                    console.log("State", this.state.savedBooks);
+                    console.log("Length", this.state.savedBooks.length);
+                })
+            )
+    };
 
 
     handleDelete = event => {
@@ -156,7 +156,7 @@ class Books extends Component {
                                                 href={book.volumeInfo.previewLink}
                                                 thumbnail={(book.volumeInfo.imageLinks) ? (book.volumeInfo.imageLinks.thumbnail) : ("https://iconutopia.com/wp-content/uploads/2016/06/rocket-book.png")}
                                                 description={book.volumeInfo.description}
-                                                save={this.handleBookSave}
+                                                save={this.handleSave}
                                                 index={i}
                                             />
                                         )
