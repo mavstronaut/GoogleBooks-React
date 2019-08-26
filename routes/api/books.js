@@ -6,7 +6,7 @@ router.route("/:id").post(booksController.create);
 
 // saved page
 
-router.route("/books/saved/:id").get(booksController.findAllSaved);
+router.route("/saved").get(booksController.findAllSaved);
 
 // delete call
 router.route("/delete/:id").delete(booksController.remove);

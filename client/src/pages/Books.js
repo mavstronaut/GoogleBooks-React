@@ -33,7 +33,9 @@ class Books extends Component {
                 this.setState({
                     results: res.data.items
                 })    
-            ).catch(err => console.log(err));
+            ).catch(() =>
+                console.log("search not handled")
+            );
         };
     };
 
@@ -45,19 +47,37 @@ class Books extends Component {
         });
     };
 
-    handleBookSave = id => {
-        const book = this.state.books.find(book => book.id === id);
     
+
+    handleBookSave = id => {
+        // const book = this.state.books.find(book => book.id === id);
+        const book = id.target.attributes.getNamedItem("data-index").value;
+        const saveBook = this.state.results[book];
+        
+
         API.saveBook({
-          key: book.id,
-          title: book.volumeInfo.title,
-          subtitle: book.volumeInfo.subtitle,
-          link: book.volumeInfo.infoLink,
-          authors: book.volumeInfo.authors,
-          description: book.volumeInfo.description,
-          image: book.volumeInfo.imageLinks.thumbnail
-        }).then(() => this.getSavedBooks());
-      };
+            key: saveBook.id,
+            title: saveBook.volumeInfo.title,
+            subtitle: saveBook.volumeInfo.subtitle,
+            link: saveBook.volumeInfo.infoLink,
+            authors: saveBook.volumeInfo.authors,
+            description: saveBook.volumeInfo.description,
+            image: saveBook.volumeInfo.imageLinks.thumbnail
+          }).then(() => this.getSavedBooks()).catch(
+            console.log('api.saveBook fail')
+        )
+    };
+        
+    //     API.saveBook({
+    //       key: book.id,
+    //       title: book.volumeInfo.title,
+    //       subtitle: book.volumeInfo.subtitle,
+    //       link: book.volumeInfo.infoLink,
+    //       authors: book.volumeInfo.authors,
+    //       description: book.volumeInfo.description,
+    //       image: book.volumeInfo.imageLinks.thumbnail
+    //     }).then(() => this.getSavedBooks());
+    //   };
 
     getSavedBooks = () => {
     API.getSavedBooks(this.state.q)
@@ -130,7 +150,7 @@ class Books extends Component {
         console.log(deleteBook._id);
 
         API.deleteBook(deleteBook._id)
-            .then(window.location.reload())
+            .then(window.location.reload()).catch(err => console.log(err))
     };
 
 

@@ -11,7 +11,7 @@ export default {
         return axios.delete("api/books/delete/" + id);
     },
     saveBook: function(bookData) {
-        return axios.post("/api/books/", bookData);
+        return axios.post("/api/books/saved", bookData);
     }
     // saveBook: function(bookKey, bookData) {
     //     return axios.post("/api/books/" + bookKey, bookData);
