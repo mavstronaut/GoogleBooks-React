@@ -11,6 +11,12 @@ Based on the [Google Books API](https://www.googleapis.com/books/v1/volumes?q=is
 * [View Live on Heroku](https://book-react-search.herokuapp.com/)
 
 
+### Preview Images
+
+![google-books2](https://user-images.githubusercontent.com/16119635/63712402-ac27dd80-c80b-11e9-96f6-853753aff855.png)
+![google-books](https://user-images.githubusercontent.com/16119635/63712403-ac27dd80-c80b-11e9-83b4-da725ffb17ee.png)
+
+
 # Process Summary
 
 * Query GoogleBooks API for `title`, `author`, `description`, `thumbnail` and `link`.
